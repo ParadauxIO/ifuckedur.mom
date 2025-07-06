@@ -36,6 +36,10 @@ app.use((req, res, next) => {
 
     // Increment the human visit counter
     if (req.method === 'GET' && req.path === '/') {
+        let ip = req.headers['x-forwarded-for'] ||
+            req.headers['x-real-ip'] ||
+            req.socket.remoteAddress;
+
         fetch(process.env.PARADAUX_API_BASE_URL + "/api/ifum/visit", {
             method: "POST",
             headers: {
@@ -43,7 +47,7 @@ app.use((req, res, next) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                ipAddress: req.ip,
+                ipAddress: ip,
                 userAgent: req.headers['user-agent'] || 'Unknown',
             })
         }).catch(err => console.error(err));
