@@ -27,7 +27,7 @@ app.use(logMiddleware(logsDir));
 
 // Increment the visitor count
 app.use((req, res, next) => {
-    const ignoredUserAgents = ["bot", "crawler", "spider", "scanner", "curl", "wget", "python", "java", "php", 'unknown', 'discord'];
+    const ignoredUserAgents = ["bot", "crawler", "spider", "scanner", "curl", "wget", "python", "java", "php", 'unknown', 'discord', '(compatible)', 'zgrab'];
     // if the user agent contains any of the ignored user agents, skip incrementing the counter
     const userAgent = req.headers['user-agent']?.toLowerCase() || 'Unknown';
     if (ignoredUserAgents.some(ua => userAgent.toLowerCase().includes(ua))) {
