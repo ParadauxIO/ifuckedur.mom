@@ -17,15 +17,14 @@
 </footer>
 
 <script>
-    // Below is set by the server at run time.
     const apiBaseUrl = "<%= apiBaseUrl %>";
 
     async function fetchCount() {
         try {
-            const res = await fetch(apiBaseUrl + '/api/ifum/visits'); // Change this URL to your actual GET endpoint
+            const res = await fetch(apiBaseUrl + '/api/analytics/visits/project/ifuckedur.mom');
             if (!res.ok) throw new Error('Failed to get the moms fucked count');
             const data = await res.json();
-            // Expecting JSON like: { count: 42 }
+
             document.getElementById('count').textContent = data ?? '{error}';
         } catch (error) {
             console.error('Failed to fetch count:', error);
