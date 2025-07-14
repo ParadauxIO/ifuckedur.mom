@@ -27,7 +27,7 @@ if (!fs.existsSync(logsDir)) {
 app.use(logMiddleware(logsDir));
 
 // Increment the visitor count
-app.use(createVisit(process.env.PARADAUX_API_BASE_URL, process.env.PARADAUX_API_SECRET));
+app.use(createVisit(process.env.PARADAUX_API_BASE_URL, process.env.PARADAUX_API_SECRET, "ifuckedur.mom"));
 
 app.get("/", (req, res) => {
     res.render("Index", {

@@ -1,4 +1,4 @@
-export const createVisit = (apiBaseUrl, apiSecret) => {
+export const createVisit = (apiBaseUrl, apiSecret, project) => {
     return (req, res, next) => {
         if (req.method === 'GET' && req.path === '/') {
             const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.socket.remoteAddress;
@@ -12,7 +12,7 @@ export const createVisit = (apiBaseUrl, apiSecret) => {
                 body: JSON.stringify({
                     ipAddress: ip,
                     userAgent: req.headers['user-agent'] || 'unknown',
-                    project: "ifuckedur.mom",
+                    project,
                 }),
             }).catch(err => console.error(err));
         }
